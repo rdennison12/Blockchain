@@ -1,2 +1,3 @@
 def main() -> None:
-    print("Hello from blockchain!")
+    from blockchain.backend.blockchain.blockchain import main as run_demo
+    run_demo()

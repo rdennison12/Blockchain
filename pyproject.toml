@@ -1,13 +1,18 @@
 [project]
 name = "blockchain"
-version = "0.1.0"
-description = "Add your description here"
+version = "1.1.1"
+description = "An updated verison of Blockchain from a UDEMY course."
 readme = "README.md"
 authors = [
     { name = "Rick Dennison", email = "rdennison12@gmail.com" }
 ]
 requires-python = ">=3.15"
-dependencies = []
+dependencies = [
+    "cryptography>=50.0.2",
+    "pytest>=9.2.0",
+    "python-dotenv>=1.2.4",
+    "requests>=2.34.2",
+]
 
 [project.scripts]
 blockchain = "blockchain:main"
