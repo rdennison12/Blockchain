@@ -71,15 +71,26 @@ class Wallet:
         )
 
     @staticmethod
-    def verify(public_key: str, data: Any, signature: Tuple[int, int]) -> bool:
+    def verify(public_key: str | bytes, data: Any, signature: Tuple[int, int]) -> bool:
         """
         Safely verify a signature against original data and PEM public key.
         """
         try:
+            if isinstance(public_key, str):
+                public_key_bytes = public_key.encode('utf-8')
+            elif isinstance(public_key, bytes):
+                public_key_bytes = public_key
+            else:
+                return False
+
             deserialized_public_key = serialization.load_pem_public_key(
-                public_key.encode('utf-8') if isinstance(public_key, str) else public_key,
+                public_key_bytes,
                 default_backend()
             )
+
+            if not isinstance(deserialized_public_key, ec.EllipticCurvePublicKey):
+                return False
+
             r, s = signature
             encoded_data = json.dumps(data, sort_keys=True).encode('utf-8')
 

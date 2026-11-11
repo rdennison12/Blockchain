@@ -1,5 +1,3 @@
-import pytest
-
 from blockchain.backend.blockchain.blockchain import Blockchain
 from blockchain.backend.config import STARTING_BALANCE
 from blockchain.backend.wallet.wallet import Wallet
@@ -20,6 +18,7 @@ def test_wallet_sign_and_verify_valid():
     signature = wallet.sign(data)
 
     assert Wallet.verify(wallet.public_key, data, signature) is True
+    assert Wallet.verify(wallet.public_key.encode('utf-8'), data, signature) is True
 
 
 def test_wallet_verify_invalid_signature():
