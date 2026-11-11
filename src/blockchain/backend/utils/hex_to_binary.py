@@ -1,4 +1,4 @@
-from ...backend.utils.crypto_hash import crypto_hash
+from blockchain.backend.utils.crypto_hash import crypto_hash
 
 HEX_TO_BINARY_CONVERSION_TABLE = {
     '0': '0000',
@@ -21,11 +21,7 @@ HEX_TO_BINARY_CONVERSION_TABLE = {
 
 
 def hex_to_binary(hex_string):
-    binary_string = ""
-
-    for character in hex_string:
-        binary_string += HEX_TO_BINARY_CONVERSION_TABLE[character]
-    return binary_string
+    return ''.join(HEX_TO_BINARY_CONVERSION_TABLE[character] for character in hex_string.lower())
 
 
 def main():
